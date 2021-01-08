@@ -7,7 +7,6 @@ import platform
 import argparse
 import time
 import sys
-from iPERCore.services.run_imitator import run_imitator
 import subprocess
 from subprocess import call
 from PIL import Image
@@ -46,7 +45,7 @@ def imitate(models, inputs):
             + " --seamless"
   )      
   run_cmd(stage_1_command)
-  path = "../result/temp_removal/"
+  path = "./result/temp_removal/frame_seamless_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
 
