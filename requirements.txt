@@ -4,3 +4,6 @@ imageio
 imageio-ffmpeg
 scipy
 scikit-image
+torch
+torchvision
+runway-python

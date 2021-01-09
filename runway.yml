@@ -1,7 +1,6 @@
 entrypoint: python runway_model.py
 python: 3.6
-cuda: 9.2
-cuda_flavor: devel
+cuda: 10.2
 spec:
   gpu: True
   cpu: False
@@ -9,9 +8,10 @@ build_steps:
   - apt-get update
   - apt-get install -y git bzip2 wget unzip cmake libgl1-mesa-dev libgtk2.0-dev
   - apt-get install ffmpeg libsm6 libxext6  -y
-# download the landmark detection model
-  - cd Face_Detection/ && wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 && bzip2 -d shape_predictor_68_face_landmarks.dat.bz2 && cd ../
-# download the pretrained model
-  - cd Face_Enhancement/ && wget https://facevc.blob.core.windows.net/zhanbo/old_photo/pretrain/Face_Enhancement/checkpoints.zip && unzip checkpoints.zip && cd ../
-  - cd Global/ && wget https://facevc.blob.core.windows.net/zhanbo/old_photo/pretrain/Global/checkpoints.zip && unzip checkpoints.zip && cd ../
   - pip install -r requirements.txt
+  - wget https://filebox.ece.vt.edu/~chengao/FGVC/demo.zip
+  - unzip demo.zip
+  - rm demo.zip
+  - wget https://filebox.ece.vt.edu/~chengao/FGVC/weight.zip
+  - unzip weight.zip
+  - rm weight.zip
