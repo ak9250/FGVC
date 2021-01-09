@@ -33,18 +33,18 @@ def imitate(models, inputs):
 
   
   os.chdir("./tool/")
-  src_path = "../images/temp1.jpg"
+  src_path = "/model/images/temp1.jpg"
 
-  ref_path = "../images/temp2.jpg"
+  ref_path = "/model/images/temp2.jpg"
   stage_1_command = ("python video_completion.py"
             + " --mode object_removal"
             + " --path src_path"
             + " --path_mask ref_path"
-            + " --outroot ../result/temp_removal"
+            + " --outroot /model/result/temp_removal"
             + " --seamless"
   )      
   run_cmd(stage_1_command)
-  path = "../result/temp_removal/frame_seamless_comp_final/00000.png"
+  path = "/model/result/temp_removal/frame_seamless_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
 
