@@ -1,25 +1,17 @@
 entrypoint: python runway_model.py
 python: 3.6
-cuda: 10.2
+cuda: 9.2
+cuda_flavor: devel
 spec:
   gpu: True
   cpu: False
 build_steps:
   - apt-get update
-  - apt-get install -y libboost-all-dev
-  - apt-get install -y cmake
-  - apt-get install ffmpeg libsm6 libxext6  wget unzip -y
-  - pip install --ignore-installed runway-python
-  - pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
-  - pip install opencv-python==4.2.0.32
-  - pip install matplotlib
-  - pip install scipy
-  - pip install imageio
-  - pip install imageio-ffmpeg
-  - pip install scikit-image
-  - wget –quiet https://filebox.ece.vt.edu/~chengao/FGVC/demo.zip
-  - unzip demo.zip
-  - rm demo.zip
-  - wget –quiet https://filebox.ece.vt.edu/~chengao/FGVC/weight.zip
-  - unzip weight.zip
-  - rm weight.zip
+  - apt-get install -y git bzip2 wget unzip cmake libgl1-mesa-dev libgtk2.0-dev
+  - apt-get install ffmpeg libsm6 libxext6  -y
+# download the landmark detection model
+  - cd Face_Detection/ && wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 && bzip2 -d shape_predictor_68_face_landmarks.dat.bz2 && cd ../
+# download the pretrained model
+  - cd Face_Enhancement/ && wget https://facevc.blob.core.windows.net/zhanbo/old_photo/pretrain/Face_Enhancement/checkpoints.zip && unzip checkpoints.zip && cd ../
+  - cd Global/ && wget https://facevc.blob.core.windows.net/zhanbo/old_photo/pretrain/Global/checkpoints.zip && unzip checkpoints.zip && cd ../
+  - pip install -r requirements.txt
