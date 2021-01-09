@@ -24,29 +24,31 @@ def run_cmd(command):
 
 @runway.command('imitate', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
 def imitate(models, inputs):
-  os.makedirs('images', exist_ok=True)
-  inputs['source'].save('images/temp1.jpg')
-  inputs['target'].save('images/temp2.jpg')
+  os.makedirs('./images', exist_ok=True)
+  os.makedirs('./mask', exist_ok=True)
 
-  paths1 = os.path.join('images','temp1.jpg')
-  paths2 = os.path.join('images','temp2.jpg')
-
+  inputs['source'].save('./images/00000.png')
+  inputs['target'].save('./mask/00000.png')
   
-  os.chdir("./tool/")
-  src_path = "/model/images/temp1.jpg"
+  
+  src_path = "../images"
 
-  ref_path = "/model/images/temp2.jpg"
-  stage_1_command = ("python video_completion.py"
-            + " --mode object_removal"
-            + " --path src_path"
-            + " --path_mask ref_path"
-            + " --outroot /model/result/temp_removal"
-            + " --seamless"
-  )      
+  ref_path = "../mask"
+  os.chdir("./tool/")
+  stage_1_command = [
+    "python3",
+    " video_completion.py",
+    " --mode", " object_removal",
+    " --path", src_path,
+    " --path_mask", ref_path,
+    " --outroot", " ../result/temp_removal",
+    " --seamless",
+  ]     
   run_cmd(stage_1_command)
-  path = "/model/result/temp_removal/frame_seamless_comp_final/00000.png"
+  path = "../result/temp_removal/frame_seamless_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
+
 
 if __name__ == '__main__':
     runway.run()
