@@ -12,6 +12,7 @@ from subprocess import call
 from PIL import Image
 import shutil
 
+
 def run_cmd(command):
     try:
         print(command)
@@ -30,13 +31,11 @@ def imitate(models, inputs):
   paths1 = os.path.join('images','temp1.jpg')
   paths2 = os.path.join('images','temp2.jpg')
 
-  src_path = "./images/temp1.jpg"
+  
+  os.chdir("./tool/")
+  src_path = "../images/temp1.jpg"
 
-  ref_path = "./images/temp2.jpg"
-
-  counter = 0
-  trump = 0
-  akun = 0
+  ref_path = "../images/temp2.jpg"
   stage_1_command = ("python video_completion.py"
             + " --mode object_removal"
             + " --path src_path"
@@ -45,7 +44,7 @@ def imitate(models, inputs):
             + " --seamless"
   )      
   run_cmd(stage_1_command)
-  path = "./result/temp_removal/frame_seamless_comp_final/00000.png"
+  path = "../result/temp_removal/frame_seamless_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
 
