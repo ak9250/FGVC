@@ -65,7 +65,6 @@ def imitate(models, inputs):
   stage_1_command = ("python video_completion.py"
             + " --mode video_extrapolation"
             + " --path ../images"
-            + " --path_mask ../mask"
             + " --outroot /model/result/temp_extrapolation"
             + " --H_scale 2"
             + " --W_scale 2"
