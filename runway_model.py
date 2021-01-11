@@ -42,7 +42,7 @@ def removal(models, inputs):
             + " --outroot /model/result/temp_removal"
   )          
   run_cmd(stage_1_command)
-  path = "../result/temp_removal/frame_seamless_comp_final/00000.png"
+  path = "../result/temp_removal/frame_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
 
@@ -60,7 +60,7 @@ def extrapolation(models, inputs):
             + " --W_scale 2"
   )          
   run_cmd(stage_1_command)
-  path = "../result/temp_extrapolation/frame_seamless_comp_final/00000.png"
+  path = "../result/temp_extrapolation/frame_comp_final/00000.png"
   img = Image.open(open(path, 'rb'))
   return img
 
