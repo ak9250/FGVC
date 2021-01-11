@@ -12,6 +12,8 @@ from subprocess import call
 from PIL import Image
 import shutil
 
+os.chdir("./tool/")
+
 
 def run_cmd(command):
     try:
@@ -31,17 +33,13 @@ def removal(models, inputs):
   inputs['target'].save('./mask/00000.png')
   
   
-  src_path = "../images"
 
-  ref_path = "../mask"
-  os.chdir("./tool/")
 
   stage_1_command = ("python video_completion.py"
             + " --mode object_removal"
             + " --path ../images"
             + " --path_mask ../mask"
             + " --outroot /model/result/temp_removal"
-            + " --seamless"
   )          
   run_cmd(stage_1_command)
   path = "../result/temp_removal/frame_seamless_comp_final/00000.png"
@@ -53,8 +51,6 @@ def extrapolation(models, inputs):
   os.makedirs('./images', exist_ok=True)
 
   inputs['source'].save('./images/00000.png')
-  
-  os.chdir("./tool/")
 
   stage_1_command = ("python video_completion.py"
             + " --mode video_extrapolation"
@@ -62,7 +58,6 @@ def extrapolation(models, inputs):
             + " --outroot /model/result/temp_extrapolation"
             + " --H_scale 2"
             + " --W_scale 2"
-            + " --seamless"
   )          
   run_cmd(stage_1_command)
   path = "../result/temp_extrapolation/frame_seamless_comp_final/00000.png"
