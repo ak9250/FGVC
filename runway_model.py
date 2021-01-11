@@ -26,11 +26,11 @@ def run_cmd(command):
 
 @runway.command('removal', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
 def removal(models, inputs):
-  os.makedirs('./images', exist_ok=True)
-  os.makedirs('./mask', exist_ok=True)
+  os.makedirs('../images', exist_ok=True)
+  os.makedirs('../mask', exist_ok=True)
 
-  inputs['source'].save('./images/00000.png')
-  inputs['target'].save('./mask/00000.png')
+  inputs['source'].save('../images/00000.png')
+  inputs['target'].save('../mask/00000.png')
   
   
 
@@ -48,9 +48,9 @@ def removal(models, inputs):
 
 @runway.command('extrapolation', inputs={'source': runway.image,}, outputs={'image': runway.image})
 def extrapolation(models, inputs):
-  os.makedirs('./images', exist_ok=True)
+  os.makedirs('../images', exist_ok=True)
 
-  inputs['source'].save('./images/00000.png')
+  inputs['source'].save('../images/00000.png')
 
   stage_1_command = ("python video_completion.py"
             + " --mode video_extrapolation"
