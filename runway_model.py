@@ -23,7 +23,7 @@ def run_cmd(command):
     
 
 @runway.command('removal', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
-def imitate(models, inputs):
+def remove(models, inputs):
   os.makedirs('./images', exist_ok=True)
   os.makedirs('./mask', exist_ok=True)
 
@@ -49,17 +49,11 @@ def imitate(models, inputs):
   return img
 
 @runway.command('extrapolation', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
-def imitate(models, inputs):
+def extrapolate(models, inputs):
   os.makedirs('./images', exist_ok=True)
-  os.makedirs('./mask', exist_ok=True)
 
   inputs['source'].save('./images/00000.png')
-  inputs['target'].save('./mask/00000.png')
   
-  
-  src_path = "../images"
-
-  ref_path = "../mask"
   os.chdir("./tool/")
 
   stage_1_command = ("python video_completion.py"
