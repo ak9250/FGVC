@@ -48,7 +48,7 @@ def removal(models, inputs):
   img = Image.open(open(path, 'rb'))
   return img
 
-@runway.command('extrapolation', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
+@runway.command('extrapolation', inputs={'source': runway.image,}, outputs={'image': runway.image})
 def extrapolation(models, inputs):
   os.makedirs('./images', exist_ok=True)
 
