@@ -39,7 +39,7 @@ def removal(models, inputs):
             + " --mode object_removal"
             + " --path ../images"
             + " --path_mask ../mask"
-            + " --outroot /model/result/temp_removal"
+            + " --outroot ../result/temp_removal"
   )          
   run_cmd(stage_1_command)
   path = "../result/temp_removal/frame_comp_final/00000.png"
@@ -55,7 +55,7 @@ def extrapolation(models, inputs):
   stage_1_command = ("python video_completion.py"
             + " --mode video_extrapolation"
             + " --path ../images"
-            + " --outroot /model/result/temp_extrapolation"
+            + " --outroot ../result/temp_extrapolation"
             + " --H_scale 2"
             + " --W_scale 2"
   )          
