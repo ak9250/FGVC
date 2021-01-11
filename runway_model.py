@@ -23,7 +23,7 @@ def run_cmd(command):
     
 
 @runway.command('removal', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
-def remove(models, inputs):
+def removal(models, inputs):
   os.makedirs('./images', exist_ok=True)
   os.makedirs('./mask', exist_ok=True)
 
@@ -49,7 +49,7 @@ def remove(models, inputs):
   return img
 
 @runway.command('extrapolation', inputs={'source': runway.image, 'target': runway.image}, outputs={'image': runway.image})
-def extrapolate(models, inputs):
+def extrapolation(models, inputs):
   os.makedirs('./images', exist_ok=True)
 
   inputs['source'].save('./images/00000.png')
