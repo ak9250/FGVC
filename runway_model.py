@@ -24,7 +24,7 @@ def run_cmd(command):
         sys.exit(1)
     
 
-@runway.command('removal', inputs={'source': runway.image, "mask": runway.segmentation(label_to_id={"background": 0, "object": 1})}, outputs={'image': runway.image})
+@runway.command('removal', inputs={'source': runway.image(description='input image'), "mask": runway.image(description='mask image')}, outputs={'image': runway.image})
 def removal(models, inputs):
   os.makedirs('../images', exist_ok=True)
   os.makedirs('../mask', exist_ok=True)
